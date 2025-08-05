@@ -40,3 +40,12 @@ pub struct Tick {
     pub fee_growth_outside_0: u128,
     pub fee_growth_outside_1: u128,
 }
+
+#[derive(Debug)]
+pub struct Position {
+    pub tick_lower: i32,
+    pub tick_upper: i32,
+    pub liquidity: u128,
+    pub collected_fee0: u128,
+    pub collected_fee1: u128,
+}
