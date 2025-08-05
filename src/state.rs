@@ -27,7 +27,7 @@ pub struct Pool {
     pub total_fee0: u128,
     pub total_fee1: u128,
     pub activity_liquidity: u128,
-    pub sqrt_price: u128,
+    pub sqrt_price_x64: u128,
     pub current_tick: i32,
     pub balance0: u128,
     pub balance1: u128,
