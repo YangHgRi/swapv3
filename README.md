@@ -33,3 +33,59 @@
 3. **代币交换:** 用户可以使用 `Swap` 指令将一种代币交换为另一种。程序会根据池中的活跃流动性和当前价格计算交换数量，并相应地更新池的状态。
 
 本项目为理解和构建 Solana 上的复杂 DeFi 协议提供了一个坚实的基础。
+
+## 客户端使用
+
+本项目包含一个命令行客户端，用于与链上程序进行交互。
+
+### 编译客户端
+
+在 `client/` 目录下运行以下命令来编译客户端：
+
+```bash
+cargo build
+```
+
+### 使用示例
+
+以下是一些使用客户端与程序交互的示例命令。
+
+**1. 初始化一个新的池:**
+
+```bash
+./target/debug/swapv3-client \
+    --rpc-url <YOUR_RPC_URL> \
+    --program-id <YOUR_PROGRAM_ID> \
+    --fee-payer <PATH_TO_YOUR_KEYPAIR> \
+    initialize-pool \
+    --token-a-mint <TOKEN_A_MINT_ADDRESS> \
+    --token-b-mint <TOKEN_B_MINT_ADDRESS> \
+    --initial-price <INITIAL_PRICE>
+```
+
+**2. 添加流动性:**
+
+```bash
+./target/debug/swapv3-client \
+    --rpc-url <YOUR_RPC_URL> \
+    --program-id <YOUR_PROGRAM_ID> \
+    --fee-payer <PATH_TO_YOUR_KEYPAIR> \
+    add-liquidity \
+    --pool-address <POOL_ADDRESS> \
+    --amount <LIQUIDITY_AMOUNT> \
+    --tick-lower <LOWER_TICK> \
+    --tick-upper <UPPER_TICK>
+```
+
+**3. 执行交换:**
+
+```bash
+./target/debug/swapv3-client \
+    --rpc-url <YOUR_RPC_URL> \
+    --program-id <YOUR_PROGRAM_ID> \
+    --fee-payer <PATH_TO_YOUR_KEYPAIR> \
+    swap \
+    --pool-address <POOL_ADDRESS> \
+    --amount-in <AMOUNT_TO_SWAP> \
+    --min-amount-out <MINIMUM_AMOUNT_OUT>
+```
