@@ -20,69 +20,70 @@ pub fn get_sqrt_ratio_at_tick(tick: i32) -> Result<u128, ProgramError> {
         return Err(SwapV3Error::InvalidTick.into());
     }
 
-    let mut ratio: u128 = if (tick_abs & 0x1) != 0 {
-        0xfffcb933bd6a8861u128
+    let mut ratio: BigUint = if (tick_abs & 0x1) != 0 {
+        BigUint::from(0xfffcb933bd6a8861u128)
     } else {
-        0x10000000000000000u128
+        BigUint::from(0x10000000000000000u128)
     };
+
     if (tick_abs & 0x2) != 0 {
-        ratio = (ratio * 0xfff97272373d4131u128) >> 128;
+        ratio = (ratio * BigUint::from(0xfff97272373d4131u128)) >> 128;
     }
     if (tick_abs & 0x4) != 0 {
-        ratio = (ratio * 0xfff2e50f5f656932u128) >> 128;
+        ratio = (ratio * BigUint::from(0xfff2e50f5f656932u128)) >> 128;
     }
     if (tick_abs & 0x8) != 0 {
-        ratio = (ratio * 0xffe5caca7e10e56fu128) >> 128;
+        ratio = (ratio * BigUint::from(0xffe5caca7e10e56fu128)) >> 128;
     }
     if (tick_abs & 0x10) != 0 {
-        ratio = (ratio * 0xffcb9843d60f6159u128) >> 128;
+        ratio = (ratio * BigUint::from(0xffcb9843d60f6159u128)) >> 128;
     }
     if (tick_abs & 0x20) != 0 {
-        ratio = (ratio * 0xff973b41fa98c08eu128) >> 128;
+        ratio = (ratio * BigUint::from(0xff973b41fa98c08eu128)) >> 128;
     }
     if (tick_abs & 0x40) != 0 {
-        ratio = (ratio * 0xff2ea16466c96a38u128) >> 128;
+        ratio = (ratio * BigUint::from(0xff2ea16466c96a38u128)) >> 128;
     }
     if (tick_abs & 0x80) != 0 {
-        ratio = (ratio * 0xfe5c563584e73a7bu128) >> 128;
+        ratio = (ratio * BigUint::from(0xfe5c563584e73a7bu128)) >> 128;
     }
     if (tick_abs & 0x100) != 0 {
-        ratio = (ratio * 0xfcbe86c7900a88a8u128) >> 128;
+        ratio = (ratio * BigUint::from(0xfcbe86c7900a88a8u128)) >> 128;
     }
     if (tick_abs & 0x200) != 0 {
-        ratio = (ratio * 0xf987a7253ac41317u128) >> 128;
+        ratio = (ratio * BigUint::from(0xf987a7253ac41317u128)) >> 128;
     }
     if (tick_abs & 0x400) != 0 {
-        ratio = (ratio * 0xf30ee3e2198a2598u128) >> 128;
+        ratio = (ratio * BigUint::from(0xf30ee3e2198a2598u128)) >> 128;
     }
     if (tick_abs & 0x800) != 0 {
-        ratio = (ratio * 0xe69594ea4a695914u128) >> 128;
+        ratio = (ratio * BigUint::from(0xe69594ea4a695914u128)) >> 128;
     }
     if (tick_abs & 0x1000) != 0 {
-        ratio = (ratio * 0xcf0569513744055bu128) >> 128;
+        ratio = (ratio * BigUint::from(0xcf0569513744055bu128)) >> 128;
     }
     if (tick_abs & 0x2000) != 0 {
-        ratio = (ratio * 0x9e774231edb50266u128) >> 128;
+        ratio = (ratio * BigUint::from(0x9e774231edb50266u128)) >> 128;
     }
     if (tick_abs & 0x4000) != 0 {
-        ratio = (ratio * 0x6675fd95340d4576u128) >> 128;
+        ratio = (ratio * BigUint::from(0x6675fd95340d4576u128)) >> 128;
     }
     if (tick_abs & 0x8000) != 0 {
-        ratio = (ratio * 0x3202b17ecdf93341u128) >> 128;
+        ratio = (ratio * BigUint::from(0x3202b17ecdf93341u128)) >> 128;
     }
     if (tick_abs & 0x10000) != 0 {
-        ratio = (ratio * 0xa93819b068533333u128) >> 128;
+        ratio = (ratio * BigUint::from(0xa93819b068533333u128)) >> 128;
     }
     if (tick_abs & 0x20000) != 0 {
-        ratio = (ratio * 0x5555555555555555u128) >> 128;
+        ratio = (ratio * BigUint::from(0x5555555555555555u128)) >> 128;
     }
 
     if tick > 0 {
         // Invert the ratio for positive ticks
-        let ratio_big: BigUint = (BigUint::from(1u128) << 256) / BigUint::from(ratio);
+        let ratio_big: BigUint = (BigUint::from(1u128) << 256) / ratio;
         Ok(ratio_big.to_u128().unwrap_or(0))
     } else {
-        Ok(ratio)
+        Ok(ratio.to_u128().unwrap_or(0))
     }
 }
 
