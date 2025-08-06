@@ -1,3 +1,5 @@
+#![allow(unexpected_cfgs)]
+
 // Declare the modules that make up the program.
 pub mod error;
 pub mod instruction;
