@@ -13,6 +13,7 @@ use solana_program::{
 
 // Define the program's entrypoint.
 // The Solana runtime calls this function for every instruction sent to the program.
+#[cfg(not(feature = "no-entrypoint"))]
 entrypoint!(process_instruction);
 
 /// The main instruction processing function.

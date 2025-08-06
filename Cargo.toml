@@ -13,3 +13,6 @@ thiserror = "1.0.61"
 
 [lib]
 crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
