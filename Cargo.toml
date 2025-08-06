@@ -4,3 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+borsh = "0.9.3"
+num-bigint = "0.4"
+num-traits = "0.2"
+solana-program = "1.18.15"
+spl-token = "4.0.1"
+thiserror = "1.0.61"
+
+[lib]
+crate-type = ["cdylib", "lib"]
